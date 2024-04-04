@@ -3,13 +3,11 @@ let pessoas = 0
 let porcentagem = 0
 
 const contaInput = document.querySelector("#conta")
-contaInput.addEventListener("input", receberValorConta )
+contaInput.addEventListener("input", receberValorConta)
 
 function receberValorConta(evento) {
     conta = Number(evento.target.value)
     calcular()
-
-    
 }
 
 const pessoasInput = document.querySelector("#pessoas")
@@ -18,6 +16,7 @@ pessoasInput.addEventListener("input", receberQuantidadePessoas)
 function receberQuantidadePessoas(evento) {
     const paragrafoErro = document.querySelector(".pessoas #erro")
     const divErro = document.querySelector(".pessoas .input-box")
+
     if(evento.target.value === "0") {
         paragrafoErro.style.display = "block"
         divErro.setAttribute("id", "erro-div")
@@ -44,15 +43,16 @@ function receberPorcentagem(evento) {
         }
     })
 
-    if(evento.target.value !== "") {
-        porcentagem = parseFloat(evento.target.value) / 100
+    if(evento.target.value !== ""){
+    porcentagem = parseFloat(evento.target.value) / 100
     } else {
         porcentagem = 0
     }
+
     calcular()
 }
 
-const gorjetaInput = document.querySelector("#outra")
+const gorjetaInput =  document.querySelector("#outra")
 gorjetaInput.addEventListener("input", receberPorcentagem)
 
 function calcular() {
@@ -66,25 +66,23 @@ function calcular() {
 }
 
 const botaoLimpar = document.querySelector(".resultados button")
-botaoLimpar.addEventListener("click", limpar)
+botaoLimpar.addEventListener ("click", limpar)
 
 function limpar() {
     contaInput.value = ""
 
-    botoesGorjeta.forEach(botao =>{
-        botao.classList.remove("botao-ativo")
+    botoesGorjeta.forEach (botao => {
+        botao.classList.remove("botao-ativa")
     })
-
 
     gorjetaInput.value = ""
 
     pessoasInput.value = ""
 
+    document.querySelector(".total > strong").innerHTML = "R$ 0.00"
     document.querySelector(".gorjeta-total > strong").innerHTML = "R$ 0.00"
 
-    document.querySelector(".total > strong").innerHTML = "R$ 0.00"
-
     conta = 0
-    porcentagem = 0
     pessoas = 0
+    porcentagem = 0
 }
